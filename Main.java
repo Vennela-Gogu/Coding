@@ -1,28 +1,41 @@
 import java.util.*;
-public class Main{
-    public static void main(String[] args){
-        Scanner sc= new Scanner(System.in);
-        String s=sc.nextLine();
-        String r="";
-        for(int i=0;i<s.length();i++)
-        {
-        int x;
-        x=s.charAt(i);
-        if(x>='a' && x<='z')
+public class Solution {
+  public static void main(String args[])
+{
+    Scanner sc= new Scanner(System.in);
+    int t=sc.nextInt();
+    for(int cases=1;cases <=t; cases++)
     {
-        x=((int)x+1)%123;
-        if(x==0)
-        x=97;
-        char x1=(char)x;
-        if(!(x1=='a' || x1=='e' || x1=='i' || x1=='o' || x1=='u'))
-        r=r+x1;
+        int n=sc.nextInt();
+        int[] a=new int[n];
+        int sum=0;
+        for(int i=0;i<n;i++){
+            a[i]=sc.nextInt();
+            sum=sum+a[i];
         }
-        else
+        if(n==1)
         {
-            r=r+s.charAt(i);
-            }
-
+          System.out.println("YES");
+          continue;
         }
-            System.out.println(r);
+        int i,prevsum=0;
+        for(i=0;i<n-1;i++)
+        {
+          if((sum-a[i])==prevsum)
+          {
+            System.out.println("YES");
+            break;
+          }
+          prevsum=prevsum+a[i];
+          sum=sum-a[i];
+        }
+        if(i==(n-1))
+        {
+          if(sum==0)
+            System.out.println("YES");
+          else
+            System.out.println("NO");
+        }
     }
+}    
 }
